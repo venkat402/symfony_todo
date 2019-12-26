@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+Tasks | Home
+{% endblock %}
+{% block body %}
+<style>
+a {
+	text-decoration: none;
+	color: white;
+}
+</style>
+<div class="container">
+	<div class="pt-3">
+		<div class="alert alert-primary " role="alert">Welcome Back Your
+			tasks details are bellow!</div>
+	</div>
+	<div class="pt-3"></div>
+	<div>
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col">Task Name</th>
+					<th scope="col">Task Status</th>
+					<th scope="col">Date Of Added</th>
+					<th scope="col">Change status</th>
+					<th scope="col">Edit</th>
+					<th scope="col">Delete</th>
+				</tr>
+			</thead>
+			<tbody>
+				{%  for ele in  data %}
+				<tr>
+					<th scope="row">{{ loop.index }}</th>
+					<td>{{ ele.task_name }}</td>
+					<td>{{ ele.task_status }}</td>
+					<td>{{ ele.date_of_added }}</td>
+					<td>{% if ele.task_status == 'incomplete' %} <a
+						href="/task/status/{{ ele.id }}">
+							<button type="button" class="btn btn-primary btn-sm not-active">
+								Mark as complete</button>
+					</a> {% else %} <a href="/task/status/{{ ele.id }}">
+							<button type="button" class="btn btn-primary btn-sm not-active">
+								Mark as incomplete</button>
+					</a> {% endif %}</td>
+					<td><a href="/task/update/{{ ele.id}}"><button
+								type="button" class="btn btn-primary btn-sm not-active">Edit</button></a>
+					</td>
+					<td><a href="/delete/task/{{ ele.id }}"><button
+								type="button" class="btn btn-primary btn-sm not-active">Delete</button></a>
+					</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</div>
+
+
+{% endblock %}

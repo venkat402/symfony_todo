@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+Hello AddTaskController!
+{% endblock %}
+
+{% block body %}
+<div class="container">
+	<div class="pt-3"></div>
+	{% if update is defined %}
+	<form action='/task/update_task/' method="post">
+		<div class="form-group">
+			<label for="exampleInputEmail1">Update Task </label> <input
+				type="text" name="task_name" class="form-control" id="exampleInputEmail1"
+				aria-describedby="emailHelp" value="{{ data.getTaskName() }}">
+			<input type="hidden" name="task_status"
+				value="{{ data.getTaskStatus() }}"> <input type="hidden"
+				name="id" value="{{ data.getId() }}">
+
+		</div>
+		<button type="submit" class="btn btn-primary">Update</button>
+	</form>
+	{% else %}
+
+	<form action='/insert/record' method="post">
+		<div class="form-group">
+			<label for="exampleInputEmail1">Enter Task </label> <input
+				type="text" name="task" class="form-control" id="exampleInputEmail1"
+				aria-describedby="emailHelp"> <input type="hidden"
+				name="task_status">
+		</div>
+		<button type="submit" class="btn btn-primary">Submit</button>
+	</form>
+	{% endif %}
+
+
+</div>
+{% endblock %}
