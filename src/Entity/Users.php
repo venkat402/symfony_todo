@@ -36,6 +36,7 @@ class Users
      */
     private $date_of_added;
 
+
     public function getId(): ?int
     {
         return $this->id;

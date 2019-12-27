@@ -11,8 +11,10 @@ a {
 </style>
 <div class="container">
 	<div class="pt-3">
+		{%if data%}
 		<div class="alert alert-primary " role="alert">Welcome Back Your
 			tasks details are bellow!</div>
+
 	</div>
 	<div class="pt-3"></div>
 	<div>
@@ -54,6 +56,11 @@ a {
 			</tbody>
 		</table>
 	</div>
+
+	{% else %}
+	<div class="alert alert-warning " role="alert">Welcome Back! You
+		don't added tasks!</div>
+	{% endif %}
 </div>
 
 

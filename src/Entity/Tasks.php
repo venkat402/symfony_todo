@@ -1,15 +1,18 @@
 <?php
-
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
+ *
  * @ORM\Entity(repositoryClass="App\Repository\TasksRepository")
  */
 class Tasks
 {
+
     /**
+     *
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
@@ -17,19 +20,29 @@ class Tasks
     private $id;
 
     /**
+     *
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
      */
     private $task_name;
 
     /**
+     *
      * @ORM\Column(type="string", length=25, nullable=true)
      */
     private $task_status;
 
     /**
+     *
      * @ORM\Column(type="datetime")
      */
     private $date_of_added;
+
+    /**
+     *
+     * @ORM\Column(type="bigint", nullable=true)
+     */
+    private $created_by;
 
     public function getId(): ?int
     {
@@ -68,6 +81,18 @@ class Tasks
     public function setDateOfAdded(\DateTimeInterface $date_of_added = null): self
     {
         $this->date_of_added = $date_of_added;
+
+        return $this;
+    }
+
+    public function getCreatedBy(): ?string
+    {
+        return $this->created_by;
+    }
+
+    public function setCreatedBy(?string $created_by): self
+    {
+        $this->created_by = $created_by;
 
         return $this;
     }
